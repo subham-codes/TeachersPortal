@@ -1,0 +1,30 @@
+Steps:
+
+1. Make sure python, mysql server and mysql workbench is installed on system
+2. Create a folder and open it in vscode.
+3. Pull the project from 'https://github.com/subham-codes/TeachersPortal.git' and open main folder (where manage.py is present).
+
+4. Create virtual environment and install the dependencies from requirements.txt
+5. Create one database named 'student_listing' and in setting.py update databse credential accordingly
+6. Open terminal in vscode and run migration commands:
+    -> python manage.py makemigrations
+    -> python manage.py makemigrate
+
+7. Create superuser to access admin panel of django:
+    -> python manage.py createsuperuser
+
+8. Run the server using:
+    -> python manage.py runserver
+
+9. Open the link --> http://127.0.0.1:8000/ on browser
+10. Login page will display -> Click Register now and insert credential and register -> login with created username and password.
+
+11. Home page will appear and You can now add records by clicking 'Add data'.
+
+12. Also records can be edit and delete by clicking edit and delete button.
+
+13. Search functionality is present via student name. Add search value and click search button.
+
+14. If more recods are present, pagination functionality is added at bottom of the table.
+
+15. Logger file is also there to debug the code. This will have basic info for the running code.
