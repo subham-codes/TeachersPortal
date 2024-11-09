@@ -1,0 +1,43 @@
+INFO | 2024-11-09 19:16:50,941 | views | Login page starts: POST
+INFO | 2024-11-09 19:16:53,049 | views | User logged in
+INFO | 2024-11-09 19:16:53,095 | views | Home view starts:GET
+INFO | 2024-11-09 19:16:53,100 | views | Student data fetched
+INFO | 2024-11-09 19:16:53,100 | views | Home view ends:GET
+INFO | 2024-11-09 19:17:20,484 | views | update_student view starts:POST
+INFO | 2024-11-09 19:17:20,499 | views | User updated successfully
+INFO | 2024-11-09 19:17:20,500 | views | update_student view ends
+INFO | 2024-11-09 19:17:38,702 | views | Home view starts:GET
+INFO | 2024-11-09 19:17:38,705 | views | Student data fetched
+INFO | 2024-11-09 19:17:38,706 | views | Home view ends:GET
+INFO | 2024-11-09 19:18:06,051 | views | Home view starts:GET
+INFO | 2024-11-09 19:18:06,060 | views | Student data fetched
+INFO | 2024-11-09 19:18:06,060 | views | Home view ends:GET
+INFO | 2024-11-09 19:18:22,967 | views | Home view starts:POST
+INFO | 2024-11-09 19:18:22,984 | views | Student data successfully added
+INFO | 2024-11-09 19:18:22,984 | views | Home page ends:POST
+INFO | 2024-11-09 19:18:23,027 | views | Home view starts:GET
+INFO | 2024-11-09 19:18:23,033 | views | Student data fetched
+INFO | 2024-11-09 19:18:23,034 | views | Home view ends:GET
+INFO | 2024-11-09 19:18:41,464 | views | User deleted
+INFO | 2024-11-09 19:18:41,465 | views | delete_student view ends: GET
+INFO | 2024-11-09 19:18:41,488 | views | Home view starts:GET
+INFO | 2024-11-09 19:18:41,496 | views | Student data fetched
+INFO | 2024-11-09 19:18:41,496 | views | Home view ends:GET
+INFO | 2024-11-09 19:19:10,951 | views | Home view starts:GET
+INFO | 2024-11-09 19:19:10,959 | views | Student data fetched
+INFO | 2024-11-09 19:19:10,959 | views | Home view ends:GET
+INFO | 2024-11-09 19:19:41,286 | views | Home view starts:GET
+INFO | 2024-11-09 19:19:41,294 | views | Student data fetched
+INFO | 2024-11-09 19:19:41,294 | views | Home view ends:GET
+INFO | 2024-11-09 19:27:02,942 | views | Home view starts:GET
+INFO | 2024-11-09 19:27:02,948 | views | Student data fetched
+INFO | 2024-11-09 19:27:02,948 | views | Home view ends:GET
+INFO | 2024-11-09 19:29:55,885 | views | Home view starts:GET
+INFO | 2024-11-09 19:29:55,890 | views | Student data fetched
+INFO | 2024-11-09 19:29:55,890 | views | Home view ends:GET
+INFO | 2024-11-09 19:33:55,325 | views | Home view starts:GET
+INFO | 2024-11-09 19:33:55,330 | views | Student data fetched
+INFO | 2024-11-09 19:33:55,330 | views | Home view ends:GET
+INFO | 2024-11-09 19:34:31,385 | views | Home view starts:GET
+INFO | 2024-11-09 19:34:31,388 | views | Student data fetched
+INFO | 2024-11-09 19:34:31,389 | views | Home view ends:GET

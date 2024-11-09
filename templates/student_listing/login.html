@@ -1,0 +1,92 @@
+{% extends "student_listing/base.html" %}
+{% load static %}
+
+{% block title %} Login {% endblock title %}
+
+{% block header %} Welcome to Tailwebs portal {% endblock header %}
+
+{% block content %}
+    <div class="container">
+        <div class="screen">
+            <div class="screen__content">
+                {% comment %} {% if error %}
+                    <div style="color:red">
+                        {{error}}
+                    </div>
+                {% endif %}
+                {% if messages %}
+                    <div style="color: green;">
+                        {% for message in messages %}
+                            {{ message }}
+                        {% endfor %}
+                    </div>
+                {% endif %} {% endcomment %}
+                <form class="login" id="login-form" method='POST' action="{% url 'student_listing:login' %}">
+                    {% csrf_token %}
+                    <div class="login__field">
+                        <i class="login__icon fas fa-user"></i>
+                        <input type="text" id="username" class="login__input" name="username" placeholder="User name" required>
+                    </div>
+                    <div class="login__field">
+                        <i class="login__icon fas fa-lock"></i>
+                        <input type="password" id="password" class="login__input" name="password" placeholder="Password" required>
+                    </div>
+                    <button type='submit' class="button login__submit">
+                        <span class="button__text">Login Now</span>
+                        <i class="button__icon fas fa-chevron-right"></i>
+                    </button>
+                    
+                    <a href="{% url 'student_listing:register' %}" class="button login__submit"><span class="button__text">Register</span></a>
+                    <i class="button__icon fas fa-chevron-right"></i>
+                    			
+                </form>
+                {% comment %} <div class="social-login">
+                    <h3>log in via</h3>
+                    <div class="social-icons">
+                        <a href="#" class="social-login__icon fab fa-instagram"></a>
+                        <a href="#" class="social-login__icon fab fa-facebook"></a>
+                        <a href="#" class="social-login__icon fab fa-twitter"></a>
+                    </div>
+                </div> {% endcomment %}
+            </div>
+            {% comment %} <div class="screen__background">
+                <span class="screen__background__shape screen__background__shape4"></span>
+                <span class="screen__background__shape screen__background__shape3"></span>		
+                <span class="screen__background__shape screen__background__shape2"></span>
+                <span class="screen__background__shape screen__background__shape1"></span>
+            </div>		 {% endcomment %}
+        </div>
+    </div>
+    
+
+
+{% endblock content %}
+
+
+{% block scripts %}
+    <script>
+        function isNotEmptyOrSpaces(str) {
+                return str && str.trim().length > 0;
+            }
+
+        document.getElementById("login-form").addEventListener("submit", (e)=>{
+            e.preventDefault();
+            console.log('Hi there');
+            const password = document.getElementById("password").value;
+            const username = document.getElementById("username").value;
+
+
+            // Check if both username and password fields are valid
+            if (isNotEmptyOrSpaces(username) && isNotEmptyOrSpaces(password)) {
+                document.getElementById("login-form").submit();
+                {% comment %} showModal("Login successful!", true); {% endcomment %}
+            } else {
+                showModal("Please fill valid inputs", false);
+            }
+        });
+
+    </script>
+    
+{% endblock scripts %}
+
+

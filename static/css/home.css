@@ -1,0 +1,10 @@
+.div-container{
+    background-color: rgb(226, 223, 223); 
+    padding: 20px;
+}
+
+.data-container{
+    background-color: white; 
+    padding: 20px;
+    border-radius: 5px;
+}

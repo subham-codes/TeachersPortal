@@ -1,0 +1,110 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> {% block title %}Base html page{% endblock %} </title>
+    <link rel="stylesheet" href="{% static 'css/common.css' %}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    {% block styles %}{% endblock styles %}
+</head>
+<body>
+
+    <header class="header mt-auto py-3 bg-light">
+        <div class="text-center" style="text-transform:uppercase">
+            <h1> {% block header %}{% endblock header %} </h1>
+        </div>
+    </header>
+
+    {% block content %}{% endblock content %}
+
+    <div class="modal fade" id="messageModal" tabindex="-1" role="dialog" aria-labelledby="messageModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="messageModalLabel">Message</h5>
+                    
+                </div>
+                <div class="modal-body" id="modal-message">
+                    <!-- Message will be inserted here -->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer mt-auto py-3 bg-light">
+        <div class="text-center">
+            <p class="mb-0">&copy; Tailwebs Technology</p>
+        </div>
+    </footer>
+    
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    {% comment %} <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script> {% endcomment %}
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    
+    <script>
+{% comment %} 
+        {% if error %}
+            showModal({{error}}, false);
+        {% endif %}
+
+        {% if messages %}
+            console.log('messages 99')
+            let msg = '';
+            let tag = '';
+
+            {% for message in messages %}
+                msg = msg + ' ' + message
+                tag = "{{ message.tags|lower }}" === "success";
+            {% endfor %}
+
+            showModal({{msg}}, tag);
+
+        {% endif %} {% endcomment %}
+
+        document.addEventListener("DOMContentLoaded", function() {
+            console.log('loaded triggered---');
+            let messages = "";
+            let tag = '';
+            {% for message in messages %}
+                messages += `{{ message }}`;
+                tag = "{{ message.tags|lower }}" === "success";
+            {% endfor %}
+            
+            if (messages){
+                showModal(messages, tag);
+                messages='';
+            }
+
+            {% comment %} document.getElementById("modal-message").innerHTML = messages;
+
+            let messageModal = new bootstrap.Modal(document.getElementById('messageModal'));
+            messageModal.show(); {% endcomment %}
+        });
+
+        // function to message display
+        function showModal(message, isSuccess) {
+            console.log('showModal triggered---');
+            const modalElement = document.getElementById('messageModal');
+            const modalMessage = document.getElementById('modal-message');
+            const modalTitle = document.getElementById('messageModalLabel');
+
+            modalMessage.textContent = message;
+            modalTitle.textContent = isSuccess ? "Success" : "Error";
+            modalMessage.className = isSuccess ? "text-success" : "text-danger";
+
+            const bootstrapModal = new bootstrap.Modal(modalElement);
+            bootstrapModal.show();
+        }
+
+    </script>
+
+    {% block scripts %}{% endblock %}
+</body>
+</html>

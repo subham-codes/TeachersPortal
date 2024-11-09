@@ -1,0 +1,109 @@
+{% extends "student_listing/base.html" %}
+{% load static %}
+
+{% block title %} Register {% endblock title %}
+
+{% block header %} Welcome to Tailwebs portal {% endblock header %}
+
+{% block content %}
+	<div class="container">
+        <div class="screen">
+            <div class="screen__content">
+                {% comment %} {% if error %}
+                    <div style="color:red">
+                        {{error}}
+                    </div>
+                {% endif %} {% endcomment %}
+                <form class="login" id="register-form" method='POST' action="{% url 'student_listing:register' %}">
+                    {% csrf_token %}
+                    <div class="login__field">
+                        <i class="login__icon fas fa-user"></i>
+                        <input type="text" id="username" class="login__input" name="username" placeholder="User name" required>
+                    </div>
+                    <div class="login__field">
+                        <i class="login__icon fas fa-user"></i>
+                        <input type="text" id="firstname" class="login__input" name="fname" placeholder="First name" required>
+                    </div>
+                    <div class="login__field">
+                        <i class="login__icon fas fa-user"></i>
+                        <input type="email" id="email" class="login__input" name="email" placeholder="Email" required>
+                    </div>
+                    <div class="login__field">
+                        <i class="login__icon fas fa-lock"></i>
+                        <input type="password" id="password" class="login__input" name="password" placeholder="Password" required>
+                    </div>
+                    <div class="login__field">
+                        <i class="login__icon fas fa-lock"></i>
+                        <input type="password" id="password2" class="login__input" name="password2" placeholder="Confirm Password" required>
+                    </div>
+                    <button type='Submit' class="button login__submit">
+                        <span class="button__text">Register Now</span>
+                        <i class="button__icon fas fa-chevron-right"></i>
+                    </button>
+                        <a href="{% url 'student_listing:login' %}" class="button login__submit" ><span class="button__text">Login</span></a>
+                        <i class="button__icon fas fa-chevron-right"></i>
+                </form>
+                
+            </div>
+            {% comment %} <div class="screen__background">
+                <span class="screen__background__shape screen__background__shape4"></span>
+                <span class="screen__background__shape screen__background__shape3"></span>		
+                <span class="screen__background__shape screen__background__shape2"></span>
+                <span class="screen__background__shape screen__background__shape1"></span>
+            </div>		 {% endcomment %}
+        </div>
+    </div>
+    
+    <div class="modal fade" id="messageModal" tabindex="-1" role="dialog" aria-labelledby="messageModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="messageModalLabel">Message</h5>
+                    
+                </div>
+                <div class="modal-body" id="modal-message">
+                    <!-- Message will be inserted here -->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+{% endblock content %}
+
+
+{% block scripts %}
+    <script>
+
+        document.getElementById("register-form").addEventListener("submit", (e)=>{
+            e.preventDefault();
+            console.log('Hi there');
+            const username = document.getElementById("username").value;
+            const firstname = document.getElementById("firstname").value;
+            const email = document.getElementById("email").value;
+            const password = document.getElementById("password").value;
+            const password2 = document.getElementById("password2").value;
+
+            function isNotEmptyOrSpaces(str) {
+                return str && str.trim().length > 0;
+            }
+
+
+            // Check if both username and password fields are valid
+            if (isNotEmptyOrSpaces(username) && isNotEmptyOrSpaces(firstname) && isNotEmptyOrSpaces(email) && isNotEmptyOrSpaces(password) && isNotEmptyOrSpaces(password2)) {
+                if(password===password2){
+                    document.getElementById("register-form").submit();
+                    {% comment %} showModal("Registered successful!", true); {% endcomment %}
+                }
+                else{
+                    showModal("Passwords does not match", false);
+                }
+            } else {
+                showModal("Input fields have only spaces", false);
+            }
+        });
+    </script>
+
+{% endblock scripts %}
