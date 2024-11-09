@@ -77,6 +77,27 @@
 {% block scripts %}
     <script>
 
+        // function to check if password is strong or not
+        function isStrongPassword(password) {
+            // At least 8 characters long
+            const lengthCheck = password.length >= 8;
+            
+            // Contains at least 1 uppercase letter
+            const uppercaseCheck = /[A-Z]/.test(password);
+            
+            // Contains at least 1 lowercase letter
+            const lowercaseCheck = /[a-z]/.test(password);
+            
+            // Contains at least 1 digit
+            const digitCheck = /[0-9]/.test(password);
+            
+            // Contains at least 1 special character
+            const specialCharCheck = /[!@#$%^&*(),.?":{}|<>]/.test(password);
+
+            return lengthCheck && uppercaseCheck && lowercaseCheck && digitCheck && specialCharCheck;
+        }
+
+
         // function to handle register submit and data validation
         document.getElementById("register-form").addEventListener("submit", (e)=>{
             e.preventDefault();
@@ -94,6 +115,13 @@
 
             // Check if both username and password fields are valid
             if (isNotEmptyOrSpaces(username) && isNotEmptyOrSpaces(firstname) && isNotEmptyOrSpaces(email) && isNotEmptyOrSpaces(password) && isNotEmptyOrSpaces(password2)) {
+                // password validation
+                if(!isStrongPassword(password)){
+                    showModal(`Password is weak. It should be at least 8 characters long, include uppercase 
+                                and lowercase letters, a digit, and a special character.`, false);
+                    return;
+                }
+
                 if(password===password2){
                     document.getElementById("register-form").submit();
                     {% comment %} showModal("Registered successful!", true); {% endcomment %}

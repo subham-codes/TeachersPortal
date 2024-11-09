@@ -135,6 +135,7 @@ def register(request):
             if User.objects.filter(username=username).exists():
                 error_msg="User already exists"
                 logger.error('User already exists')
+                messages.error(request, 'Username already exists: Enter different username')
                 return render(request,'student_listing/register.html',{'error':error_msg})
             
             user = User.objects.create_user(username=username,first_name=fname,email=email,password=password)
