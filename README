@@ -1,6 +1,6 @@
 Steps:
 
-1. Make sure python, mysql server and mysql workbench is installed on system
+1. Make sure Python 3.12.6 , mysql server and mysql workbench are installed on system.
 2. Create a folder and open it in vscode.
 3. Pull the project from 'https://github.com/subham-codes/TeachersPortal.git' and open main folder (where manage.py is present).
 
