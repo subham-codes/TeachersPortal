@@ -65,10 +65,13 @@
 
 {% block scripts %}
     <script>
+
+        // function to validate for spaces and empty
         function isNotEmptyOrSpaces(str) {
                 return str && str.trim().length > 0;
             }
-
+        
+        // function to handle login submit and data validation
         document.getElementById("login-form").addEventListener("submit", (e)=>{
             e.preventDefault();
             console.log('Hi there');

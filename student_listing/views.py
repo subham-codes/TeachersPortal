@@ -17,6 +17,7 @@ logger = logging.getLogger('mylogger')
 def home(request):
     logger.info('Home view starts:'+ str(request.method))
     try:
+        # get method for display home page and student details
         if request.method == 'GET':
             search = request.GET.get('search')
             if search:
@@ -34,7 +35,7 @@ def home(request):
             return render(request, 'student_listing/home.html', {'page_obj': page_obj,
                                                              'search':search})
         
-        # for adding records
+        # post method for adding records
         if request.method == 'POST':
             rows = json.loads(request.POST.get('rows', '[]'))
             for row in rows:
@@ -65,10 +66,11 @@ def home(request):
         logger.error('Error occurred at home view'+str(exe))
     
 
-# @login_required(login_url='student_listing:login')
+@login_required(login_url='student_listing:login')
 def delete_student(request,id=None):
     logger.info('delete_student view starts:'+str(request.method))
     try:
+        # get method for deleting student record and redirecting to home page
         if request.method == 'GET':
             search = request.GET.get('search') if request.GET.get('search') else ''
             page = request.GET.get('page')  
@@ -92,6 +94,7 @@ def delete_student(request,id=None):
 def update_student(request,id=None):
     logger.info('update_student view starts:' + str(request.method))
     try:
+        # post method for update student records
         if request.method == 'POST':
             print('update function')
             stu_obj = StudentModel.objects.filter(id=id).first()
@@ -121,7 +124,7 @@ def update_student(request,id=None):
 def register(request):
     logger.info('register view starts:'+ str(request.method))
     try:
-        # for user register
+        # post method for user register CRUD operation
         if request.method == 'POST':
             username = request.POST.get('username')
             fname = request.POST.get('fname')
@@ -140,7 +143,7 @@ def register(request):
             logger.info('register view ends'+str(request.method))
             return redirect('student_listing:login')
         
-        # for accessing register page
+        # get method for accessing register page
         logger.info('register view ends'+ str(request.method))
         return render(request,'student_listing/register.html')
     
@@ -152,6 +155,8 @@ def register(request):
 def login(request):
     logger.info('Login page starts: '+ str(request.method))
     try:
+
+        # post method for login CRUD operation
         if request.method == 'POST':
             username = request.POST.get('username')
             password = request.POST.get('password')
@@ -171,6 +176,7 @@ def login(request):
                 logger.error('Login failed: Username or password not found')
                 return render(request, 'student_listing/login.html', {'error': 'username or password not found'})
         
+        # get method for login page display
         logger.info('Login view ends'+ str(request.method))
         return render(request, 'student_listing/login.html')
     
